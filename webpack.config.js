@@ -5,7 +5,7 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var LiveReloadPlugin = require('webpack-livereload-plugin');
 
 var config = {
-  entry: pkg.main,
+  entry: pkg.main.replace(".js", ".ts"),
   output: {
     path: path.join(__dirname, 'codebase'),
     publicPath:"/codebase/",
@@ -15,20 +15,20 @@ var config = {
   module: {
     rules: [
       {
-        test: /\.js$/,
-        use: 'babel-loader'
+        test: /\.ts?$/,
+        loader: 'awesome-typescript-loader'
       },
       {
-      	test: /\.(png|jpg|gif)$/,
-      	use: 'url-loader?limit=25000'
+        test: /\.(png|jpg|gif)$/,
+        use: 'url-loader?limit=25000'
       },
       {
         test: /\.less$/,
         use: ExtractTextPlugin.extract({
-        	use: [
-        		"css-loader",
-				"less-loader"
-			]
+          use: [
+            "css-loader",
+            "less-loader"
+          ]
         })
       },
       {
@@ -38,7 +38,7 @@ var config = {
     ]
   },
   resolve: {
-    extensions: ['.js'],
+    extensions: ['.ts', '.js'],
     modules: ["sources", "node_modules"]
   },
   devServer:{
@@ -48,8 +48,8 @@ var config = {
   },
   plugins: [
     new ExtractTextPlugin({
-    	filename:pkg.main.replace(".js", ".css")
-	}),
+      filename:pkg.main.replace(".js", ".css")
+  }),
     new LiveReloadPlugin()
   ]
 };

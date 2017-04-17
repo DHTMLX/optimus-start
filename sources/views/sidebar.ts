@@ -6,7 +6,7 @@ export class SidebarView extends DHXView{
 			template: "tiles",
 			icons_path: "codebase/imgs/"
 		});
-		this.ui.attachEvent("onSelect", (id) => this.callEvent("SideBar", [id]) );
+		this.ui.attachEvent("onSelect", (id:string) => this.callEvent("SideBar", [id]) );
 		this._load();
 	}
 

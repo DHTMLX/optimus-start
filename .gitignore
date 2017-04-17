@@ -1,6 +1,8 @@
 node_modules
 codebase/*.js
 codebase/*.css
+sources/**/*.js
+sources/**/*.map
 
 *.zip
 dist/

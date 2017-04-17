@@ -7,7 +7,7 @@ export class TopbarView extends DHXView{
 			skin: "dhx_web"
 		});
 		this.ui.setIconSize(32);
-		this.ui.attachEvent("onClick", (id) => this.callEvent("ToolbarClick", [id]))
+		this.ui.attachEvent("onClick", (id:string) => this.callEvent("ToolbarClick", [id]))
 		this._load();
 	}
 

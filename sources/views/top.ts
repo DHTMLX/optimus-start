@@ -1,18 +1,20 @@
 import {DHXView} from "dhx-optimus";
 
-import {TopbarView} 	from "views/topbar.js";
-import {SidebarView} 	from "views/sidebar.js";
-import {AboutView} 		from "views/about.js";
-import {ProjectsView} 	from "views/projects.js";
+import {TopbarView} 	from "./topbar";
+import {SidebarView} 	from "./sidebar";
+import {AboutView} 		from "./about";
+import {ProjectsView} 	from "./projects";
 
 export class TopView extends DHXView{
+	public ui:dhtmlXLayoutObject;
+
 	render(){
-		this.ui = this.root.attachLayout("2U");
+		this.ui = this.root.attachLayout({ pattern: "2U" });
 
 		this.show(TopbarView, this.ui);
 		this.show(SidebarView, this.ui.cells("a"));
 
-		this.ui.cells("a").setWidth(200);
+		(<any>this.ui.cells("a")).setWidth(200);
 		this.ui.forEachItem( cell =>{
 			cell.hideHeader();
 			cell.fixSize(true);
