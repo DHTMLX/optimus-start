@@ -14,7 +14,7 @@ export class TopView extends DHXView{
 		this.show(TopbarView, this.ui);
 		this.show(SidebarView, this.ui.cells("a"));
 
-		(<any>this.ui.cells("a")).setWidth(200);
+		this.ui.cells("a").setWidth(200);
 		this.ui.forEachItem( cell =>{
 			cell.hideHeader();
 			cell.fixSize(true);
