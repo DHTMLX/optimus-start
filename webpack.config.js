@@ -51,7 +51,8 @@ var config = {
     	filename:pkg.main.replace(".js", ".css")
 	}),
     new LiveReloadPlugin()
-  ]
+  ],
+  mode: 'development'
 };
 
 module.exports = config;
