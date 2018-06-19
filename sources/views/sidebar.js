@@ -9,6 +9,16 @@ export class SidebarView extends DHXView {
     });
     this.ui.attachEvent('onSelect', (id) => this.callEvent('SideBar', [id]));
     this._load();
+
+    this.addService('SidebarService', {
+      select: (id) => {
+        this._select(id);
+      }
+    });
+  }
+
+  _select(id) {
+    this.ui.items(id).setActive();
   }
 
   _load() {

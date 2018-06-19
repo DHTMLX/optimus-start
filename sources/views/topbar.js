@@ -10,11 +10,11 @@ export class TopbarView extends DHXView {
     this.ui.attachEvent('onClick', (id) => this.callEvent('ToolbarClick', [id]));
     this._load();
 
-    this.addService("ToolbarService", {
+    this.addService('ToolbarService', {
       setText: (text) => {
         this._setText(text);
       }
-    })
+    });
   }
 
   _load() {
@@ -27,6 +27,6 @@ export class TopbarView extends DHXView {
   }
 
   _setText(text) {
-    this.ui.setItemText('title', `<span class="topbar_title">${text}</span>`);
+    this.ui.setItemText('title', `<span class='topbar_title'>${text}</span>`);
   }
 }
