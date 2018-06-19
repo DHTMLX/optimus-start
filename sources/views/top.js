@@ -4,6 +4,9 @@ import { TopbarView } from 'views/topbar.js';
 import { SidebarView } from 'views/sidebar.js';
 import { AboutView } from 'views/about.js';
 import { ProjectsView } from 'views/projects.js';
+import { ContactsView } from 'views/contacts.js';
+import { EventsView } from 'views/events.js';
+import { SettingsView } from 'views/settings.js';
 
 import route from 'riot-route';
 
@@ -16,7 +19,7 @@ export class TopView extends DHXView {
       switch (id) {
         case 'contacts':
           dhxTop.getService('ToolbarService').setText('Contacts');
-          dhxTop.show(AboutView, 'right');
+          dhxTop.show(ContactsView, 'right');
           break;
         case 'projects':
           dhxTop.show(ProjectsView, 'right');
@@ -24,11 +27,11 @@ export class TopView extends DHXView {
           break;
         case 'events':
           dhxTop.getService('ToolbarService').setText('Events');
-          dhxTop.show(AboutView, 'right');
+          dhxTop.show(EventsView, 'right');
           break;
         case 'settings':
           dhxTop.getService('ToolbarService').setText('Settings');
-          dhxTop.show(AboutView, 'right');
+          dhxTop.show(SettingsView, 'right');
           break;
         case 'about':
           dhxTop.getService('ToolbarService').setText('About');
@@ -36,7 +39,7 @@ export class TopView extends DHXView {
           break;
         default:
           dhxTop.getService('ToolbarService').setText('Contacts');
-          dhxTop.show(AboutView, 'right');
+          dhxTop.show(ContactsView, 'right');
           break;
       }
     });
