@@ -12,38 +12,31 @@ export class TopView extends DHXView {
     //router
     let dhxTop = this;
     route(function (id) {
-      console.log('routing to...', id);
       dhxTop.getService('SidebarService').select(id || 'contacts');
       switch (id) {
         case 'contacts':
           dhxTop.getService('ToolbarService').setText('Contacts');
           dhxTop.show(AboutView, 'right');
-          route('/contacts');
           break;
         case 'projects':
           dhxTop.show(ProjectsView, 'right');
           dhxTop.getService('ToolbarService').setText('Projects');
-          route('/projects');
           break;
         case 'events':
           dhxTop.getService('ToolbarService').setText('Events');
           dhxTop.show(AboutView, 'right');
-          route('/events');
           break;
         case 'settings':
           dhxTop.getService('ToolbarService').setText('Settings');
           dhxTop.show(AboutView, 'right');
-          route('/settings');
           break;
         case 'about':
           dhxTop.getService('ToolbarService').setText('About');
           dhxTop.show(AboutView, 'right');
-          route('/about');
           break;
         default:
           dhxTop.getService('ToolbarService').setText('Contacts');
           dhxTop.show(AboutView, 'right');
-          route('/contacts');
           break;
       }
     });
