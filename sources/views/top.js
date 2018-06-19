@@ -1,32 +1,64 @@
-import {DHXView} from "dhx-optimus";
+import { DHXView } from 'dhx-optimus';
 
-import {TopbarView} 	from "views/topbar.js";
-import {SidebarView} 	from "views/sidebar.js";
-import {AboutView} 		from "views/about.js";
-import {ProjectsView} 	from "views/projects.js";
+import { TopbarView } from 'views/topbar.js';
+import { SidebarView } from 'views/sidebar.js';
+import { AboutView } from 'views/about.js';
+import { ProjectsView } from 'views/projects.js';
 
-export class TopView extends DHXView{
-	render(){
-		this.ui = this.root.attachLayout("2U");
+import route from 'riot-route';
 
-		this.show(TopbarView, this.ui);
-		this.show(SidebarView, this.ui.cells("a"));
+route(function(collection, id, action) {
+  console.log(collection, id, action);
+});
+route.start(true);
 
-		this.ui.cells("a").setWidth(200);
-		this.ui.forEachItem( cell =>{
-			cell.hideHeader();
-			cell.fixSize(true);
-		});
+export class TopView extends DHXView {
+  render() {
+    this.ui = this.root.attachLayout('2U');
 
-		this.addSlot("right", this.ui.cells("b"));
+    this.show(TopbarView, this.ui);
+    this.show(SidebarView, this.ui.cells('a'));
 
-		this.attachEvent("SideBar", (id) => {
-			if (id === "projects")
-				this.show(ProjectsView, "right");
-			else if (id === "about")
-				this.show(AboutView, "right");
-		});
+    this.ui.cells('a').setWidth(200);
+    this.ui.forEachItem(cell => {
+      cell.hideHeader();
+      cell.fixSize(true);
+    });
 
-		this.show(ProjectsView, "right");
-	}
+    this.addSlot('right', this.ui.cells('b'));
+
+    this.attachEvent('SideBar', (id) => {
+      console.log(`routing to ${id}`);
+      switch (id) {
+        case 'contacts':
+          this.getService('ToolbarService').setText('Contacts');
+          this.show(AboutView, 'right');
+          route('/contacts');
+          break;
+        case 'projects':
+          this.show(ProjectsView, 'right');
+          this.getService('ToolbarService').setText('Projects');
+          route('/projects');
+          break;
+        case 'events':
+          this.getService('ToolbarService').setText('Events');
+          this.show(AboutView, 'right');
+          route('/events');
+          break;
+        case 'settings':
+          this.getService('ToolbarService').setText('Settings');
+          this.show(AboutView, 'right');
+          route('/settings');
+          break;
+        case 'about':
+          this.getService('ToolbarService').setText('About');
+          this.show(AboutView, 'right');
+          route('/about');
+          break;
+      }
+    });
+
+    this.show(ProjectsView, 'right');
+
+  }
 }

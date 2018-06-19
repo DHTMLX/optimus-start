@@ -59,5 +59,8 @@
     "webpack-dev-server": "^3.1.4",
     "webpack-livereload-plugin": "^2.1.1",
     "webpack-stream": "^4.0.3"
+  },
+  "dependencies": {
+    "riot-route": "^3.1.3"
   }
 }
