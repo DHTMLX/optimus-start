@@ -49,9 +49,9 @@ More information:
 
 [DHTMLX.com](https://docs.dhtmlx.com/optimus__index.html)
 
-# Todo
-- create diagram to get an overview how cross-component-communication works, up: events, down: services
-- make the Contacts grid work
+# What's next?
+
+- make this app the same as my [dhtmlx-json-node demo](https://github.com/rkristelijn/dhtmlx-json-node)
 
 # Solved security issues
 
