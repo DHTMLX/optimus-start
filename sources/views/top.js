@@ -1,32 +1,68 @@
-import {DHXView} from "dhx-optimus";
+import { DHXView } from 'dhx-optimus';
 
-import {TopbarView} 	from "views/topbar.js";
-import {SidebarView} 	from "views/sidebar.js";
-import {AboutView} 		from "views/about.js";
-import {ProjectsView} 	from "views/projects.js";
+import { TopbarView } from 'views/topbar.js';
+import { SidebarView } from 'views/sidebar.js';
+import { AboutView } from 'views/about.js';
+import { ProjectsView } from 'views/projects.js';
+import { ContactsView } from 'views/contacts.js';
+import { EventsView } from 'views/events.js';
+import { SettingsView } from 'views/settings.js';
 
-export class TopView extends DHXView{
-	render(){
-		this.ui = this.root.attachLayout("2U");
+import route from 'riot-route';
 
-		this.show(TopbarView, this.ui);
-		this.show(SidebarView, this.ui.cells("a"));
+export class TopView extends DHXView {
+  render() {
+    //router
+    let dhxTop = this;
+    route(function (id) {
+      dhxTop.getService('SidebarService').select(id || 'contacts');
+      switch (id) {
+        case 'contacts':
+          dhxTop.getService('ToolbarService').setText('Contacts');
+          dhxTop.show(ContactsView, 'right');
+          break;
+        case 'projects':
+          dhxTop.show(ProjectsView, 'right');
+          dhxTop.getService('ToolbarService').setText('Projects');
+          break;
+        case 'events':
+          dhxTop.getService('ToolbarService').setText('Events');
+          dhxTop.show(EventsView, 'right');
+          break;
+        case 'settings':
+          dhxTop.getService('ToolbarService').setText('Settings');
+          dhxTop.show(SettingsView, 'right');
+          break;
+        case 'about':
+          dhxTop.getService('ToolbarService').setText('About');
+          dhxTop.show(AboutView, 'right');
+          break;
+        default:
+          dhxTop.getService('ToolbarService').setText('Contacts');
+          dhxTop.show(ContactsView, 'right');
+          break;
+      }
+    });
+    route.start(true);
 
-		this.ui.cells("a").setWidth(200);
-		this.ui.forEachItem( cell =>{
-			cell.hideHeader();
-			cell.fixSize(true);
-		});
+    this.ui = this.root.attachLayout('2U');
 
-		this.addSlot("right", this.ui.cells("b"));
+    this.show(TopbarView, this.ui);
+    this.show(SidebarView, this.ui.cells('a'));
 
-		this.attachEvent("SideBar", (id) => {
-			if (id === "projects")
-				this.show(ProjectsView, "right");
-			else if (id === "about")
-				this.show(AboutView, "right");
-		});
+    this.ui.cells('a').setWidth(200);
+    this.ui.forEachItem(cell => {
+      cell.hideHeader();
+      cell.fixSize(true);
+    });
 
-		this.show(ProjectsView, "right");
-	}
+    this.addSlot('right', this.ui.cells('b'));
+
+    this.attachEvent('SideBar', (id) => {
+      route(id);
+    });
+
+    this.show(ProjectsView, 'right');
+
+  }
 }
