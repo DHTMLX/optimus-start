@@ -1,4 +1,7 @@
-DHTMLX Optimus - starter
+Please check the latest version of DHTMLX Optimus based app at https://github.com/DHTMLX/optimus-starter-app
+---
+
+DHTMLX Optimus - starter ( outdated ! )
 -------------------------
 
 ### How to run standalone
